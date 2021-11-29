@@ -30,7 +30,7 @@ public class BrowserStackAndroidSelenideTests extends TestBase {
     }
 
     @Test
-    void testSaveFirstArticleToMyList() {
+    void articleCompareAndSwipeToFooterTest() {
 
         final String
                 TITLE = "//*[@text='Java (programming language)']",
