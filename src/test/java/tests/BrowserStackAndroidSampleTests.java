@@ -18,6 +18,7 @@ public class BrowserStackAndroidSampleTests {
 
         DesiredCapabilities caps = new DesiredCapabilities();
 
+
         // Set your access credentials
         caps.setCapability("browserstack.user", "pavel_SYyLW4");
         caps.setCapability("browserstack.key", "sNtDgZsG1Arvm5GoecJv");
@@ -26,7 +27,7 @@ public class BrowserStackAndroidSampleTests {
         caps.setCapability("app", "bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c");
 
         // Specify device and os_version for testing
-        caps.setCapability("device", "Google Pixel 3");
+        caps.setCapability("device", "Google Pixel 2");
         caps.setCapability("os_version", "9.0");
 
         // Set other BrowserStack capabilities
