@@ -15,7 +15,8 @@ import java.net.URL;
 public class BrowserStackIosSampleTests {
 
 
-    @Test
+    @Test()
+    @Disabled
     void searchTest() throws MalformedURLException, InterruptedException {
         DesiredCapabilities caps = new DesiredCapabilities();
 
