@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
 
-@Tag("selenide_android")
+@Tag("selenoid_android")
 public class SelenoidAndroidSelenideTests extends SelenoidTestBase {
 
     @Test

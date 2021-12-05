@@ -1,22 +1,32 @@
 package drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
+import config.SelenoidConfigData;
 import io.appium.java_client.android.AndroidDriver;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 public class SelenoidMobileDriver implements WebDriverProvider {
 
+    static SelenoidConfigData selenoidConfigData = ConfigFactory.create(SelenoidConfigData.class);
+
+    static String user = selenoidConfigData.user();
+    static String password = selenoidConfigData.password();
+    static String platformName = selenoidConfigData.platformName();
+    static String deviceName = selenoidConfigData.deviceName();
+    static String version = selenoidConfigData.version();
+    static String locale = selenoidConfigData.locale();
+    static String language = selenoidConfigData.language();
+    static String appPackage = selenoidConfigData.appPackage();
+    static String appActivity = selenoidConfigData.appActivity();
 
     public static URL getSelenoidUrl() {
         try {
-            return new URL("https://user1:1234@selenoid.autotests.cloud:4444/wd/hub");
+            return new URL("https://" + user + ":" + password + "@selenoid.autotests.cloud/wd/hub");
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -25,24 +35,23 @@ public class SelenoidMobileDriver implements WebDriverProvider {
     @Override
     public WebDriver createDriver(DesiredCapabilities desiredCapabilities) {
 
-        desiredCapabilities.setCapability("platformName", "Android");
-        desiredCapabilities.setCapability("deviceName", "android");
-        desiredCapabilities.setCapability("version", "8.1");
-        desiredCapabilities.setCapability("locale", "en");
-        desiredCapabilities.setCapability("language", "en");
+        desiredCapabilities.setCapability("platformName", platformName);
+        desiredCapabilities.setCapability("deviceName", deviceName);
+        desiredCapabilities.setCapability("version", version);
+        desiredCapabilities.setCapability("locale", locale);
+        desiredCapabilities.setCapability("language", language);
         desiredCapabilities.setCapability("enableVNC", true);
         desiredCapabilities.setCapability("enableVideo", true);
-        desiredCapabilities.setCapability("appPackage", "org.wikipedia.alpha");
-        desiredCapabilities.setCapability("appActivity", "org.wikipedia.main.MainActivity");
+        desiredCapabilities.setCapability("appPackage", appPackage);
+        desiredCapabilities.setCapability("appActivity", appActivity);
         desiredCapabilities.setCapability("app", apkUrl());
 
         return new AndroidDriver(getSelenoidUrl(), desiredCapabilities);
     }
 
-
     private URL apkUrl() {
         try {
-            return new URL("https://github.com/wikimedia/apps-android-wikipedia/releases/download/latest/app-alpha-universal-release.apk");
+            return new URL("(https://github.com/wikimedia/apps-android-wikipedia/releases/download/latest/app-alpha-universal-release.apk");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
